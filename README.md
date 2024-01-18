@@ -104,4 +104,6 @@ R2 TEST: -0.4327683067183006
 
 This is clearly a case of overfitting. R2 and MSE on training data is good, but we are doing horribly on test data. Therefore, this is not useful either.
 
-The project highlighted various challenges, particularly in the feature extraction process and model building phase. Maintaining model generalization without overfitting was a crucial aspect. Our project represented a comprehensive effort to predict student performance based on interactions with ChatGPT. Despite facing difficulties and getting mixed results, we learned important things about the machine learning itself and working on projects.
+# Conclusion:
+
+The project highlighted various challenges, particularly in the feature extraction process and model building phase. Maintaining model generalization without overfitting was a crucial aspect. Our project represented a comprehensive effort to predict student performance based on interactions with ChatGPT. Despite facing difficulties and getting mixed results, we learned important things about machine learning itself and working on projects.
