@@ -32,4 +32,61 @@ Lastly, we also tried training a random forest classifier with GridCV to find th
 
 # Results:
 
-:(
+Long story short, we didn't manage to find a relation.
+
+Our binary classifier has the following confusion matrix:
+
+![Confusion Matrix](https://github.com/ArdaBC/FearlessPianoPancake/blob/main/confusion_matrix.png?raw=true)
+
+As you can see, this is not that impressive, but still, not horrible. It has an accuracy of 72% on the test set. Now, we feed the predictions from this outlier classifier to the neural network and we get the following result:
+
+![NN Results](https://github.com/ArdaBC/FearlessPianoPancake/blob/main/nnresults.png?raw=true)
+
+This seems okay, however, when you take a close look at the predictions of our neural network, the allure is lost:
+
+Actual   Predicted
+0     97.0   99.966873
+1     96.0   99.985054
+2     93.0   99.999931
+3     90.0   97.460190
+4     98.0   98.051086
+5     99.0   99.998169
+6    100.0  100.000000
+7    100.0   99.999817
+8    100.0   99.999947
+9     88.0  100.000000
+10    92.0  100.000000
+11    98.0   99.999695
+12    99.0  100.000000
+13    89.0   99.999878
+14    94.0  100.000000
+15    96.0   99.999985
+16   100.0  100.000000
+17    97.0  100.000000
+18    99.0  100.000000
+19    97.0   99.995987
+20    84.0  100.000000
+21    90.0   99.989761
+22    15.0  100.000000
+23    78.0   99.993286
+24    94.0   99.999969
+
+Our model has low error because it predicts high grades for everyone, and it gets away with this because the data is extremely right skewed. Furthermore, as can be seen on the 22nd line, our model predicted that someone who got 15 got 100. This shows that our approach of using two neural networks was not useful.
+
+If we look at the results of our random forest classifier, we also see nothing useful unfortunately. With a max depth of 5, minimum samples per leaf 2, minimum samples per split 5 and 10 estimators, we got the following results:
+
+MSE Train: 45.45360824742268
+R2 Train: 0.628097499043445
+MSE Test: 339.12
+R2 Test: -0.24650074101954877
+
+This tells us our model did a poor job.
+
+Lastly, let's take a look at the decision tree results:
+
+MSE Train: 7.168113225486601
+MSE TEST: 389.7955068818447
+R2 Train: 0.941350327543042
+R2 TEST: -0.4327683067183006
+
+This is clearly a case of overfitting. R2 and MSE on training data is good, but we are doing horribly on test data. Therefore, this is not useful either.
